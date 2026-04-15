@@ -9,11 +9,12 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --black: #0c0c0c;
-    --white: #f5f2ee;
-    --gold: #c9a96e;
-    --mid: #1a1a1a;
-    --muted: #888;
+    --bg: #faf8f5;
+    --black: #1c1c1c;
+    --accent: #8a6f4e;
+    --mid: #f0ece6;
+    --muted: #999;
+    --border: #e0d9d0;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Montserrat', sans-serif;
   }
@@ -21,14 +22,14 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
-    color: var(--white);
+    background: var(--bg);
+    color: var(--black);
     font-family: var(--sans);
     font-weight: 300;
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -37,50 +38,46 @@
     justify-content: space-between;
     align-items: center;
     padding: 28px 60px;
-    background: linear-gradient(to bottom, rgba(12,12,12,0.95) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(250,248,245,0.97) 0%, rgba(250,248,245,0) 100%);
     transition: background 0.4s;
   }
-  nav.scrolled { background: rgba(12,12,12,0.97); }
+  nav.scrolled { background: rgba(250,248,245,0.98); border-bottom: 1px solid var(--border); }
 
   .nav-logo {
     font-family: var(--serif);
     font-size: 1.5rem;
     font-weight: 300;
     letter-spacing: 0.12em;
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
   }
-  .nav-logo span { color: var(--gold); }
+  .nav-logo span { color: var(--accent); }
 
-  .nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a {
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
-    opacity: 0.75;
+    opacity: 0.55;
     transition: opacity 0.25s, color 0.25s;
   }
-  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-links a:hover { opacity: 1; color: var(--accent); }
 
   .nav-cta {
     font-size: 0.68rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     text-decoration: none;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--accent);
     padding: 10px 24px;
     transition: background 0.25s, color 0.25s;
   }
-  .nav-cta:hover { background: var(--gold); color: var(--black); }
+  .nav-cta:hover { background: var(--accent); color: var(--bg); }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     position: relative;
     height: 100vh;
@@ -89,11 +86,7 @@
     align-items: flex-end;
     overflow: hidden;
   }
-
-  .hero-slides {
-    position: absolute;
-    inset: 0;
-  }
+  .hero-slides { position: absolute; inset: 0; }
   .hero-slide {
     position: absolute;
     inset: 0;
@@ -107,12 +100,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(12,12,12,0.9) 0%,
-      rgba(12,12,12,0.3) 50%,
-      rgba(12,12,12,0.15) 100%
-    );
+    background: linear-gradient(to top, rgba(250,248,245,0.9) 0%, rgba(250,248,245,0.2) 50%, rgba(250,248,245,0.05) 100%);
   }
 
   .hero-content {
@@ -125,7 +113,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 20px;
     opacity: 0;
     animation: fadeUp 1s 0.4s forwards;
@@ -135,20 +123,17 @@
     font-size: clamp(3.5rem, 8vw, 7rem);
     font-weight: 300;
     line-height: 0.95;
-    letter-spacing: -0.01em;
+    color: var(--black);
     margin-bottom: 28px;
     opacity: 0;
     animation: fadeUp 1s 0.6s forwards;
   }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
+  .hero-title em { font-style: italic; color: var(--accent); }
   .hero-sub {
     font-size: 0.78rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--black);
     opacity: 0;
     animation: fadeUp 1s 0.8s forwards;
     margin-bottom: 40px;
@@ -158,67 +143,55 @@
     font-size: 0.68rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
-    border-bottom: 1px solid var(--gold);
+    border-bottom: 1px solid var(--accent);
     padding-bottom: 6px;
     opacity: 0;
     animation: fadeUp 1s 1s forwards;
     transition: color 0.25s;
   }
-  .hero-btn:hover { color: var(--gold); }
+  .hero-btn:hover { color: var(--accent); }
 
   .hero-indicators {
     position: absolute;
-    bottom: 80px;
-    right: 60px;
+    bottom: 80px; right: 60px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     z-index: 3;
   }
   .indicator {
-    width: 2px;
-    height: 24px;
-    background: rgba(255,255,255,0.2);
+    width: 2px; height: 24px;
+    background: rgba(28,28,28,0.15);
     cursor: pointer;
     transition: background 0.3s, height 0.3s;
   }
-  .indicator.active { background: var(--gold); height: 40px; }
+  .indicator.active { background: var(--accent); height: 40px; }
 
-  /* ── SECTION LABELS ── */
+  /* SECTION LABEL */
   .section-label {
     font-size: 0.62rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 16px;
   }
 
-  /* ── ABOUT ── */
-  .about {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
-  }
-  .about-image {
-    position: relative;
-    overflow: hidden;
-  }
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+  .about-image { position: relative; overflow: hidden; }
   .about-image img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(20%);
+    filter: grayscale(15%);
     transition: transform 0.8s ease, filter 0.8s ease;
   }
   .about-image:hover img { transform: scale(1.04); filter: grayscale(0%); }
 
   .about-text {
     background: var(--mid);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column; justify-content: center;
     padding: 80px 70px;
   }
   .about-title {
@@ -227,64 +200,53 @@
     font-weight: 300;
     line-height: 1.1;
     margin-bottom: 28px;
+    color: var(--black);
   }
-  .about-title em { font-style: italic; color: var(--gold); }
-
+  .about-title em { font-style: italic; color: var(--accent); }
   .about-body {
     font-size: 0.88rem;
     line-height: 1.9;
-    color: rgba(245,242,238,0.75);
-    margin-bottom: 36px;
+    color: rgba(28,28,28,0.65);
+    margin-bottom: 24px;
     max-width: 440px;
   }
   .about-stats {
-    display: flex;
-    gap: 48px;
+    display: flex; gap: 48px;
     padding-top: 36px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid var(--border);
   }
   .stat-num {
     font-family: var(--serif);
-    font-size: 2.8rem;
-    font-weight: 300;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
+    font-size: 2.8rem; font-weight: 300;
+    color: var(--accent);
+    display: block; line-height: 1;
   }
   .stat-label {
     font-size: 0.62rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 6px;
-    display: block;
+    margin-top: 6px; display: block;
   }
 
-  /* ── SERVICES ── */
-  .services {
-    padding: 120px 60px;
-    background: var(--black);
-  }
+  /* SERVICES */
+  .services { padding: 120px 60px; background: var(--bg); }
   .services-header {
-    display: flex;
-    align-items: flex-end;
+    display: flex; align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 72px;
-    gap: 40px;
+    margin-bottom: 72px; gap: 40px;
   }
   .services-title {
     font-family: var(--serif);
     font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 300;
-    line-height: 1.05;
+    font-weight: 300; line-height: 1.05;
+    color: var(--black);
   }
-  .services-title em { font-style: italic; color: var(--gold); }
-
+  .services-title em { font-style: italic; color: var(--accent); }
   .services-intro {
     max-width: 360px;
-    font-size: 0.84rem;
-    line-height: 1.9;
-    color: rgba(245,242,238,0.65);
+    font-size: 0.84rem; line-height: 1.9;
+    color: rgba(28,28,28,0.6);
   }
 
   .services-grid {
@@ -292,310 +254,149 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
   }
-  .service-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    cursor: pointer;
-  }
+  .service-card { position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
   .service-card img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(30%) brightness(0.7);
+    filter: grayscale(20%) brightness(0.92);
     transition: transform 0.7s ease, filter 0.7s ease;
   }
-  .service-card:hover img {
-    transform: scale(1.08);
-    filter: grayscale(0%) brightness(0.85);
-  }
+  .service-card:hover img { transform: scale(1.08); filter: grayscale(0%) brightness(1); }
   .service-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(12,12,12,0.92) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(250,248,245,0.93) 0%, rgba(250,248,245,0.08) 55%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
     padding: 28px 24px;
   }
-  .service-num {
-    font-family: var(--serif);
-    font-size: 0.75rem;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    margin-bottom: 8px;
-  }
-  .service-name {
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
-  .service-desc {
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: rgba(245,242,238,0.6);
-    text-transform: uppercase;
-  }
+  .service-num { font-family: var(--serif); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 8px; }
+  .service-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; line-height: 1.2; margin-bottom: 6px; color: var(--black); }
+  .service-desc { font-size: 0.68rem; letter-spacing: 0.1em; color: rgba(28,28,28,0.55); text-transform: uppercase; }
 
-  /* ── PORTFOLIO STRIP ── */
-  .portfolio-strip {
-    padding: 0 0 120px;
-    background: var(--black);
-    overflow: hidden;
-  }
+  /* PORTFOLIO */
+  .portfolio-strip { padding: 0 0 120px; background: var(--bg); overflow: hidden; }
   .strip-header {
-    padding: 0 60px;
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
+    padding: 0 60px; margin-bottom: 48px;
+    display: flex; align-items: center; gap: 32px;
   }
-  .strip-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-  }
-  .strip-line {
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-  }
+  .strip-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--black); white-space: nowrap; }
+  .strip-line { flex: 1; height: 1px; background: var(--border); }
   .strip-link {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    white-space: nowrap;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.25s;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none; white-space: nowrap;
+    border-bottom: 1px solid transparent; transition: border-color 0.25s;
   }
-  .strip-link:hover { border-color: var(--gold); }
+  .strip-link:hover { border-color: var(--accent); }
 
   .mosaic {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: auto auto;
-    gap: 3px;
-    padding: 0 60px;
+    gap: 3px; padding: 0 60px;
   }
-  .mosaic-item {
-    overflow: hidden;
-    position: relative;
-  }
-  .mosaic-item:first-child {
-    grid-row: 1 / 3;
-  }
+  .mosaic-item { overflow: hidden; position: relative; }
+  .mosaic-item:first-child { grid-row: 1 / 3; }
   .mosaic-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
     min-height: 280px;
     transition: transform 0.7s ease;
   }
   .mosaic-item:hover img { transform: scale(1.05); }
 
-  /* ── TESTIMONIAL ── */
+  /* TESTIMONIAL */
   .testimonial {
     background: var(--mid);
     padding: 120px 60px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .testimonial::before {
     content: '\201C';
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--serif);
-    font-size: 20rem;
-    color: rgba(201,169,110,0.06);
-    line-height: 1;
-    pointer-events: none;
+    position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    font-family: var(--serif); font-size: 20rem;
+    color: rgba(138,111,78,0.07);
+    line-height: 1; pointer-events: none;
   }
   .testimonial-quote {
     font-family: var(--serif);
     font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.5;
-    max-width: 800px;
-    margin: 0 auto 36px;
-    position: relative;
+    font-weight: 300; font-style: italic; line-height: 1.5;
+    max-width: 800px; margin: 0 auto 36px;
+    position: relative; color: var(--black);
   }
-  .testimonial-author {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
+  .testimonial-author { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
 
-  /* ── CONTACT ── */
-  .contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-  .contact-image {
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%) brightness(0.7);
-  }
-  .contact-image-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(12,12,12,0.3);
-  }
+  /* CONTACT */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh; }
+  .contact-image { position: relative; overflow: hidden; }
+  .contact-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) brightness(0.95); }
+  .contact-image-overlay { position: absolute; inset: 0; background: rgba(250,248,245,0.08); }
   .contact-form-area {
     background: var(--mid);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; flex-direction: column; justify-content: center;
     padding: 80px 70px;
   }
-  .contact-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    margin-bottom: 12px;
-    line-height: 1.1;
-  }
-  .contact-title em { font-style: italic; color: var(--gold); }
-  .contact-sub {
-    font-size: 0.82rem;
-    color: rgba(245,242,238,0.6);
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-  .form-group label {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+  .contact-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; margin-bottom: 12px; line-height: 1.1; color: var(--black); }
+  .contact-title em { font-style: italic; color: var(--accent); }
+  .contact-sub { font-size: 0.82rem; color: rgba(28,28,28,0.55); margin-bottom: 40px; line-height: 1.7; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .form-group label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
   .form-group input,
   .form-group select,
   .form-group textarea {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--white);
+    background: rgba(255,255,255,0.75);
+    border: 1px solid var(--border);
+    color: var(--black);
     padding: 14px 16px;
-    font-family: var(--sans);
-    font-size: 0.82rem;
-    font-weight: 300;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 300;
     outline: none;
     transition: border-color 0.25s;
-    resize: none;
-    -webkit-appearance: none;
+    resize: none; -webkit-appearance: none;
   }
-  .form-group select option { background: var(--mid); }
+  .form-group select option { background: var(--bg); }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--gold);
-  }
+  .form-group textarea:focus { border-color: var(--accent); }
   .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group textarea::placeholder { color: rgba(28,28,28,0.3); }
 
   .submit-btn {
-    background: var(--gold);
-    color: var(--black);
-    border: none;
-    padding: 16px 40px;
-    font-family: var(--sans);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.25s, transform 0.2s;
-    align-self: flex-start;
-    margin-top: 8px;
+    background: var(--accent); color: var(--bg);
+    border: none; padding: 16px 40px;
+    font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.25s, transform 0.2s;
+    align-self: flex-start; margin-top: 8px;
   }
-  .submit-btn:hover { background: #d4b07f; transform: translateY(-1px); }
+  .submit-btn:hover { background: #7a5f3e; transform: translateY(-1px); }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
     background: var(--black);
-    border-top: 1px solid rgba(255,255,255,0.06);
     padding: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
   }
-  .footer-logo {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-  }
-  .footer-logo span { color: var(--gold); }
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  .footer-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.25s;
-  }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-credit {
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    color: rgba(136,136,136,0.5);
-    text-transform: uppercase;
-  }
-  .footer-credit a {
-    color: var(--gold);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
+  .footer-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; letter-spacing: 0.1em; color: #faf8f5; }
+  .footer-logo span { color: var(--accent); }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,248,245,0.4); text-decoration: none; transition: color 0.25s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-credit { font-size: 0.62rem; letter-spacing: 0.15em; color: rgba(250,248,245,0.22); text-transform: uppercase; }
+  .footer-credit a { color: var(--accent); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
   .footer-credit a:hover { opacity: 1; }
 
-  /* ── ANIMATIONS ── */
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
-  /* ── MOBILE ── */
+  /* MOBILE */
   @media (max-width: 1024px) {
     nav { padding: 22px 32px; }
     .nav-links { display: none; }
@@ -612,12 +413,11 @@
     .contact { grid-template-columns: 1fr; }
     .contact-image { min-height: 40vw; }
     .contact-form-area { padding: 60px 32px; }
-    .footer { padding: 40px 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
+    footer { padding: 40px 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
     .strip-header { padding: 0 32px; }
     .portfolio-strip { padding-bottom: 80px; }
     .services-header { flex-direction: column; align-items: flex-start; }
   }
-
   @media (max-width: 600px) {
     .services-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -628,7 +428,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Twin<span>Lens</span></a>
   <ul class="nav-links">
@@ -640,7 +439,6 @@
   <a href="#contact" class="nav-cta">Book a Session</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-slides">
     <div class="hero-slide active" style="background-image: url('https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-205924.png')"></div>
@@ -660,7 +458,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-image">
     <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210213.png" alt="TwinLens Photography">
@@ -668,39 +465,23 @@
   <div class="about-text">
     <p class="section-label reveal">Our Story</p>
     <h2 class="about-title reveal">A dynamic team<br>of <em>visual storytellers</em></h2>
-    <p class="about-body reveal">
-      TwinLens Photography is a collective of passionate photographers based in Surrey, BC. We bring diverse perspectives and years of experience to every shoot — from intimate wedding moments to high-impact commercial campaigns.
-    </p>
-    <p class="about-body reveal">
-      Our approach is simple: listen deeply, then document authentically. We believe the most powerful images aren't staged — they're captured.
-    </p>
+    <p class="about-body reveal">TwinLens Photography is a collective of passionate photographers based in Surrey, BC. We bring diverse perspectives and years of experience to every shoot — from intimate editorial portraits to high-impact commercial campaigns.</p>
+    <p class="about-body reveal">Our approach is simple: listen deeply, then document authentically. We believe the most powerful images aren't staged — they're captured.</p>
     <div class="about-stats reveal">
-      <div>
-        <span class="stat-num">12+</span>
-        <span class="stat-label">Years Active</span>
-      </div>
-      <div>
-        <span class="stat-num">500+</span>
-        <span class="stat-label">Sessions Shot</span>
-      </div>
-      <div>
-        <span class="stat-num">4</span>
-        <span class="stat-label">Specialties</span>
-      </div>
+      <div><span class="stat-num">12+</span><span class="stat-label">Years Active</span></div>
+      <div><span class="stat-num">500+</span><span class="stat-label">Sessions Shot</span></div>
+      <div><span class="stat-num">4</span><span class="stat-label">Specialties</span></div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-header">
     <div>
       <p class="section-label reveal">What We Do</p>
       <h2 class="services-title reveal">Photography<br>for <em>every occasion</em></h2>
     </div>
-    <p class="services-intro reveal">
-      From executive headshots to your brand's next campaign, we bring the same level of craft and intention to every project.
-    </p>
+    <p class="services-intro reveal">From executive headshots to your brand's next campaign, we bring the same level of craft and intention to every project.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
@@ -738,7 +519,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO STRIP -->
 <section class="portfolio-strip" id="portfolio">
   <div class="strip-header">
     <h2 class="strip-title reveal">Recent Work</h2>
@@ -746,33 +526,19 @@
     <a href="#contact" class="strip-link">Book a Session →</a>
   </div>
   <div class="mosaic">
-    <div class="mosaic-item reveal">
-      <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-205955.png" alt="Wedding">
-    </div>
-    <div class="mosaic-item reveal">
-      <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210113.png" alt="Lifestyle">
-    </div>
-    <div class="mosaic-item reveal">
-      <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210039.png" alt="Corporate">
-    </div>
-    <div class="mosaic-item reveal">
-      <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-205924.png" alt="Hospitality">
-    </div>
-    <div class="mosaic-item reveal">
-      <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210017.png" alt="Real Estate">
-    </div>
+    <div class="mosaic-item reveal"><img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-205955.png" alt="Portfolio"></div>
+    <div class="mosaic-item reveal"><img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210113.png" alt="Portfolio"></div>
+    <div class="mosaic-item reveal"><img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210039.png" alt="Portfolio"></div>
+    <div class="mosaic-item reveal"><img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-205924.png" alt="Portfolio"></div>
+    <div class="mosaic-item reveal"><img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210017.png" alt="Portfolio"></div>
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
 <section class="testimonial">
-  <p class="testimonial-quote reveal">
-    "TwinLens captured our wedding in a way that felt completely natural — like they weren't even there. The photos are beyond anything we imagined."
-  </p>
-  <p class="testimonial-author reveal">— Sarah &amp; James, Surrey BC</p>
+  <p class="testimonial-quote reveal">"TwinLens captured our brand in a way that felt completely natural — like they just understood us instantly. The photos are beyond anything we imagined."</p>
+  <p class="testimonial-author reveal">— Sarah M., Surrey BC</p>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-image">
     <img src="https://raw.githubusercontent.com/StackwellDigital/Twinlens/main/Screenshot_20260414-210213.png" alt="Contact TwinLens">
@@ -783,19 +549,10 @@
     <h2 class="contact-title reveal">Let's create<br>something <em>memorable</em></h2>
     <p class="contact-sub reveal">Tell us about your project and we'll get back to you within 24 hours.</p>
     <div class="form-row">
-      <div class="form-group reveal">
-        <label>First Name</label>
-        <input type="text" placeholder="Jane">
-      </div>
-      <div class="form-group reveal">
-        <label>Last Name</label>
-        <input type="text" placeholder="Smith">
-      </div>
+      <div class="form-group reveal"><label>First Name</label><input type="text" placeholder="Jane"></div>
+      <div class="form-group reveal"><label>Last Name</label><input type="text" placeholder="Smith"></div>
     </div>
-    <div class="form-group reveal">
-      <label>Email Address</label>
-      <input type="email" placeholder="jane@example.com">
-    </div>
+    <div class="form-group reveal"><label>Email Address</label><input type="email" placeholder="jane@example.com"></div>
     <div class="form-group reveal">
       <label>Type of Session</label>
       <select>
@@ -807,15 +564,11 @@
         <option>Other</option>
       </select>
     </div>
-    <div class="form-group reveal">
-      <label>Message</label>
-      <textarea rows="4" placeholder="Tell us about your project..."></textarea>
-    </div>
+    <div class="form-group reveal"><label>Message</label><textarea rows="4" placeholder="Tell us about your project..."></textarea></div>
     <button class="submit-btn reveal">Send Inquiry</button>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Twin<span>Lens</span> Photography</div>
   <ul class="footer-links">
@@ -828,17 +581,12 @@
 </footer>
 
 <script>
-  // Nav scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-  // Hero slideshow
   const slides = document.querySelectorAll('.hero-slide');
   const indicators = document.querySelectorAll('.indicator');
-  let current = 0;
-  let timer;
+  let current = 0, timer;
 
   function goToSlide(n) {
     slides[current].classList.remove('active');
@@ -849,27 +597,13 @@
     clearInterval(timer);
     timer = setInterval(nextSlide, 5000);
   }
-
-  function nextSlide() {
-    goToSlide((current + 1) % slides.length);
-  }
-
+  function nextSlide() { goToSlide((current + 1) % slides.length); }
   timer = setInterval(nextSlide, 5000);
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 80);
-        observer.unobserve(entry.target);
-      }
-    });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 80); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
-
-  revealEls.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
